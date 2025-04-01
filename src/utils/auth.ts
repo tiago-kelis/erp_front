@@ -62,7 +62,7 @@ export const userAuth = () => {
 
     return {
         user,
-        islogged: auth.user !== null,
+        isLogged: auth.user !== null,
         handleInitUser,
         handlePermissionExists,
         handleSignIn,
