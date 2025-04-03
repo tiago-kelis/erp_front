@@ -21,14 +21,13 @@ export const userAuth = () => {
     }
 
 
-
     const handleInitUser = async () => {        
         const access_token = handleGetAccessToken();
         if (!access_token) return;
 
         const response = await getUser();
 
-        if(response) {
+        if(!response.detail) {
             dispatch(setUser(response.data.user));
             dispatch(setUserEnterprise(response.data.enterprise));
         }     
@@ -43,18 +42,23 @@ export const userAuth = () => {
     }
 
 
-    const handleSignIn = async ({email, password}: {  email: string, password: string }) => {        
-        const response = await signIn({email, password});        
-        if(!response.detail) {
+    const handleSignIn = async (email: string, password: string) => {
+        const response = await signIn({ email, password });
+        
+        if (!response.detail) {
             dispatch(setUser(response.data.user));
             dispatch(setUserEnterprise(response.data.enterprise));
+    
+            // Salvar token de acesso no local storage
+            localStorage.setItem(LOCAL_STORAGE_KEY, response.data.access);
+        }
+    
+        return response;
+    };
 
-            // Save access token local storage
-            localStorage.setItem(LOCAL_STORAGE_KEY, response.data.access);            
-        }        
-    }
 
     const hamdleSignOut = () => {
+        
         dispatch(setUser(null));
         dispatch(setUserEnterprise(null));
         localStorage.removeItem(LOCAL_STORAGE_KEY);

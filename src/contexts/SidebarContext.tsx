@@ -1,4 +1,5 @@
 import { FC, useState, createContext } from 'react';
+
 type SidebarContext = {
   sidebarToggle: any;
   toggleSidebar: () => void;
@@ -15,6 +16,7 @@ export const SidebarProvider: FC = ({ children }) => {
   const toggleSidebar = () => {
     setSidebarToggle(!sidebarToggle);
   };
+  
   const closeSidebar = () => {
     setSidebarToggle(false);
   };

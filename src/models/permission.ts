@@ -7,7 +7,7 @@ export type Permission = {
 
 export type PermissionDetail = {
     id: number
-    label: string
+    name: string
     codename: string
 }
 
