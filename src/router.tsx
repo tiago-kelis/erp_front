@@ -15,14 +15,15 @@ const Loader = (Component) => (props) =>
   );
 
 // Auth
-const SignIn = Loader(lazy(() => import("src/content/pages/Auth/Sigin")))
+const SignIn = Loader(lazy(() => import("src/content/pages/Auth/Sigin")));
+
+// Groups
+const Groups = Loader(lazy(() => import("src/content/pages/Gorups/Groups")));
 
 // Pages
-
 const Overview = Loader(lazy(() => import('src/content/overview')));
 
 // Dashboards
-
 const Tasks = Loader(lazy(() => import('src/content/dashboards/Tasks')));
 
 // Applications
@@ -92,6 +93,20 @@ const routes: RouteObject[] = [
         element: <SignIn />       
 
       },
+
+      //Groups
+      {
+        path: "",
+        element: <SidebarLayout/>,
+        children: [
+          {
+            path: "Groups",
+            element: <Groups/>
+          }
+        ]
+      },
+
+
       {
         path: '/',
         element: <Overview />
