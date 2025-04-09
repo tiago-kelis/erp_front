@@ -15,7 +15,7 @@ export const AuthMiddleWare = ({children}: Props) => {
 
     useEffect(() => {
 
-        if(!isLogged) navigate("/sigin")
+        if(!isLogged) navigate("/signin")
 
     }, [])   
 

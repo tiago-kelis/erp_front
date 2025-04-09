@@ -1,5 +1,5 @@
 import { Container } from "@mui/material";
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Helmet } from "react-helmet-async";
 import GroupTable from "src/components/GroupTable";
 import PageTitle from "src/components/PageTitle";
@@ -24,16 +24,21 @@ const Groups = () => {
 
     }
 
+    useEffect(() => {
+        handleGetGroups();
+    }, [])
+
+
     return (
        <PermissionMiddleWares codeName="view_group">
           <>
             <Helmet>
-                <title>Cargos</title>                
+                <title>Grupos</title>                
             </Helmet>
 
             <PageTitleWrapper>
                 <PageTitle
-                    heading="Cargos"
+                    heading="Grupos"
                     subHeading="Consulte cargos das Empresas e execute ações"
                 />               
 
@@ -42,8 +47,10 @@ const Groups = () => {
           </>
 
           <Container maxWidth="xl" sx={{
-                marginX: resquestLoading ? "-10%" : 0,
-                transition: "all .5s"
+                marginX: resquestLoading ? "5%" : 0,
+                transition: "all .5s",
+                alignItems: "center",             
+                
             }}>
             <GroupTable
                 refreshList={handleGetGroups}

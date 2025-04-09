@@ -4,23 +4,23 @@ import { PermissionDetail } from "src/models/permission"
 
 type Props = {
 
-    permissionDate: PermissionDetail[];
-    selectedPermission: number[];
-    setSelectedPermission: (value:  number[]) => void;
+    permissionsData: PermissionDetail[];
+    selectedPermissions: number[];
+    setSelectedPermissions: (value:  number[]) => void;
    
 }
 
 
-const permissionList = ({permissionDate, selectedPermission, setSelectedPermission}: Props) => {
+const permissionList = ({permissionsData, selectedPermissions, setSelectedPermissions}: Props) => {
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>, permission_id: number) => {
 
         const {checked} =event.target;
 
         if(checked) {
-            setSelectedPermission([...selectedPermission, permission_id])
+            setSelectedPermissions([...selectedPermissions, permission_id])
         }else{
-            setSelectedPermission(selectedPermission.filter(fid => fid != permission_id))            
+            setSelectedPermissions(selectedPermissions.filter(fid => fid != permission_id))            
         }
 
 
@@ -29,17 +29,18 @@ const permissionList = ({permissionDate, selectedPermission, setSelectedPermissi
 
     return (
       <FormGroup>
-        {permissionDate.map((item) => (
+        {permissionsData.map((item) => (
             <FormControlLabel 
 
                 key={item.id}
                 control={
                     <Checkbox
-                        checked={selectedPermission.find((id) => id === item.id) != undefined}
+                        checked={selectedPermissions.find((id) => id === item.id) != undefined}
                         onChange={(e) => handleChange(e, item.id)}
                     />
 
                 }
+                
                 label={item.name}
             
             />

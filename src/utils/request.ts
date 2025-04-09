@@ -13,35 +13,35 @@ const signIn = async ({email, password}: {  email: string, password: string }) =
 
 // Users
 const getUser = async () => {
-    const response = await useApi<ApiGetUser>('auth/user', 'GET');
+    const response = await useApi<ApiGetUser>('auth/user');
     return response;
 }
 
 // Groups and Permissions
 const getPermissions = async () => {
-    const response = await useApi<ApiGetPermissions>('companies/permissions', 'GET');
+    const response = await useApi<ApiGetPermissions>('companies/permissions');
     return response;
 }
 
 const getGroups = async () => {
-    const response = await useApi<ApiGetGroups>('companies/groups', 'GET');
+    const response = await useApi<ApiGetGroups>('companies/groups');
     return response;
 }
 
 const getAnGroup = async (id: number) => {
-    const response = await useApi<ApiGetGroup>(`companies/groups/${id}`, 'GET');
+    const response = await useApi<ApiGetGroup>(`companies/groups/${id}`);
     return response;
 }
 
 
-const addGroup = async ({nome, permissions}: {nome: string, permissions: string}) => {
-    const response = await useApi('companies/groups', 'POST', {nome, permissions});
+const addGroup = async ({name, permissions}: {name: string, permissions: string}) => {
+    const response = await useApi('companies/groups', 'POST', {name, permissions});
     return response;
 }
 
 
-const editGroup = async ( id: number, {nome, permissions}: {nome?: string, permissions?: string}) => {
-    const response = await useApi(`companies/groups/${id}`, 'PUT', {nome, permissions});
+const editGroup = async ( id: number, {name, permissions}: {name?: string, permissions?: string}) => {
+    const response = await useApi(`companies/groups/${id}`, 'PUT', {name, permissions});
     return response;
 }
 
@@ -53,23 +53,23 @@ const deleteGroup = async (id: number) => {
 
 // Employees
 const getEmployees = async () => {
-    const response = await useApi<ApiGetEmployees>('companies/employees', 'GET');
+    const response = await useApi<ApiGetEmployees>('companies/employees');
     return response;
 }
 
 const getAnEmplyee = async (id: number) => {
-    const response = await useApi<ApiGetEmployee>(`companies/employees/${id}`, 'GET');
+    const response = await useApi<ApiGetEmployee>(`companies/employees/${id}`);
     return response;
 }
 
-const addEmployee = async ({ nome, email, password }: {nome: string, email: string, password: string }) => {
-    const response = await useApi('companies/employees', 'POST', {nome, email, password });
+const addEmployee = async ({ name, email, password }: {name: string, email: string, password: string }) => {
+    const response = await useApi('companies/employees', 'POST', {name, email, password });
     return response;
 }
 
 
-const editEmployee = async (id: number, { nome, email, groups }: {nome?: string, email?: string, groups: string }) => {
-    const response = await useApi(`companies/employees/${id}`, 'PUT', {nome, email, groups });
+const editEmployee = async (id: number, { name, email, groups }: {name?: string, email?: string, groups?: string }) => {
+    const response = await useApi(`companies/employees/${id}`, 'PUT', {name, email, groups });
     return response;
 }
 
@@ -81,23 +81,23 @@ const deleteEmployee = async (id: number) => {
 
 // Tasks
 const getTasks = async () => {
-    const response = await useApi<ApiGetTasks>('companies/tasks', 'GET');
+    const response = await useApi<ApiGetTasks>('companies/tasks');
     return response;
 }
 
 const getAnTask = async (id: number) => {
-    const response = await useApi<ApiGetTask>(`companies/tasks/${id}`, 'GET');
+    const response = await useApi<ApiGetTask>(`companies/tasks/${id}`);
     return response;
 }
 
-const addTask = async ({ title, description, due_date, employee_id, status_id }: {title: string, description: string, due_date: string, employee_id: number, status_id: number }) => {
+const addTask = async ({ title, description, due_date, employee_id, status_id }: {title: string, description?: string, due_date?: string, employee_id: number, status_id: number }) => {
     const response = await useApi<ApiGetTask>('companies/tasks', 'POST', {title, description, due_date, employee_id, status_id });
     return response;
 }
 
 
-const editTask = async (id: number, { nome, description, due_date, employee_id, status_id }: {nome?: string, description?: string, due_date?: string, employee_id?: number, status_id?: number }) => {
-    const response = await useApi(`companies/tasks/${id}`, 'PUT', {nome, description, due_date, employee_id, status_id });
+const editTask = async (id: number, { name, description, due_date, employee_id, status_id }: {name?: string, description?: string, due_date?: string, employee_id?: number, status_id?: number }) => {
+    const response = await useApi(`companies/tasks/${id}`, 'PUT', {name, description, due_date, employee_id, status_id });
     return response;
 }
 

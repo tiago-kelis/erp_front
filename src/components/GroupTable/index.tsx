@@ -1,7 +1,7 @@
 import { Card, Container, IconButton, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Tooltip, Typography } from "@mui/material";
 import EditTwoToneIcon from "@mui/icons-material/EditTwoTone";
 import DeleteTwoToneIcon from "@mui/icons-material/DeleteTwoTone"
-import { useTheme } from "@mui/styles";
+import { useTheme } from "@mui/material";
 import { useNavigate } from "react-router";
 import { GroupDetail } from "src/models/group"
 import { userAuth } from "src/utils/auth";
@@ -62,7 +62,17 @@ const GroupTable = ({groupList, refreshList}: Props) => {
 
                                         {handlePermissionExists("change_group") && 
                                             <Tooltip title="Edite o Cargo" arrow>
-                                                <IconButton>
+                                                <IconButton
+                                                    sx={{
+                                                        "&:hover": {
+                                                            background: theme.colors.primary.lighter
+                                                        },
+                                                        color: theme.palette.primary.main
+                                                    }}
+
+                                                    color="inherit"
+                                                    size="small"
+                                                >
                                                     <EditTwoToneIcon onClick={() => handleEditGroup(group.id)}/>
                                                 </IconButton>
                                             </Tooltip>
@@ -70,7 +80,17 @@ const GroupTable = ({groupList, refreshList}: Props) => {
 
                                         {handlePermissionExists("delete_Group") &&
                                             <Tooltip title="Excluir Cargo" arrow>
-                                            <IconButton>
+                                            <IconButton 
+                                                sx={{
+                                                    "&:hover": {
+                                                        background: theme.colors.primary.lighter
+                                                    },
+                                                    color: theme.palette.error.main
+                                                }}
+
+                                                color="inherit"
+                                                size="small"
+                                            >
                                                 <DeleteTwoToneIcon onClick={() => handleDeleteGroup(group.id)}/>
                                             </IconButton>
                                             </Tooltip>

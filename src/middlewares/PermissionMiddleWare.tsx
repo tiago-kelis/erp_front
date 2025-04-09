@@ -18,7 +18,7 @@ export const PermissionMiddleWares = ({children, codeName}: Props) => {
 
     const { handlePermissionExists} = userAuth()
 
-    if(! handlePermissionExists(codeName)) {
+    if(!handlePermissionExists(codeName)) {
 
         return (
             <Container maxWidth="sm" sx={{mt: 16}}>

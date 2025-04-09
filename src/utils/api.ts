@@ -1,22 +1,32 @@
 import axios, { AxiosError } from "axios";
 import { ApiError } from "src/models/api";
+import { handleGetAccessToken } from "./auth";
 
-const BASE_URL = 'https://localhost:8000/api/v1';
+const BASE_URL = 'http://localhost:8000/api/v1';
 
 export const useApi = async<TypeDataResponse>(
 
-    endpointer: string,
+    endpoint: string,
     method: 'GET' | 'POST' | 'PUT' | 'DELETE' = "GET",
     data?: object,
     withAuth: boolean = true
 
-): Promise<{data: TypeDataResponse, detail: string}> => {
+): Promise<{data?: TypeDataResponse, detail: string}> => {
+
+    const access_token = handleGetAccessToken();
+
+    let headers = {};
+
+    if(withAuth && access_token) {
+       headers['Authorization'] = `Bearer ${access_token}`
+    }
 
    try {
-        const request = await axios(`${BASE_URL}/${endpointer}`, {
+        const request = await axios(`${BASE_URL}/${endpoint}`, {
             method,
             data: method !== 'GET' && data,
-            params: method === 'GET' && data,        
+            params: method === 'GET' && data,
+            headers        
         })
 
         return {
@@ -29,7 +39,7 @@ export const useApi = async<TypeDataResponse>(
 
         return {
             data: null,
-            detail: error.response.data.detail || error.message,
+            detail: error.response?.data?.detail || error.message
         }
      
     

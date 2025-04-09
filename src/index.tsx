@@ -14,7 +14,7 @@ ReactDOM.render(
     <SidebarProvider>
       <BrowserRouter>
       <Provider store={store}>
-          <App />
+        <App />
       </Provider>
        
       </BrowserRouter>
